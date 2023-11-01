@@ -1,17 +1,17 @@
-import { PerspectiveCamera } from "/vendor/three/build/three.module.js";
+import { PerspectiveCamera, OrthographicCamera } from "/vendor/three/build/three.module.js";
 
 function createCamera() {
-  const camera = new PerspectiveCamera(
-    35, // fov = Field Of View
-    1, // aspect ratio (dummy value)
-    0.1, // near clipping plane
-    100, // far clipping plane
-  );
+	// const aspect = 0.5;
+	const aspect = window.innerHeight / window.innerWidth;
+	const r = 8;
 
-  // move the camera back so we can view the scene
-  camera.position.set(0, 0, 10);
+	// const camera = new PerspectiveCamera( 35, 1, 0.1, 100 );
+	const camera = new OrthographicCamera( -r, r, -r * aspect, r * aspect, 0.01, 100 );
 
-  return camera;
+	// move the camera back so we can view the scene
+	camera.position.set(0, 0, 10);
+
+	return camera;
 }
 
 export { createCamera };

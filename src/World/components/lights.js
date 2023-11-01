@@ -1,13 +1,16 @@
-import { DirectionalLight } from "/vendor/three/build/three.module.js";
+import { DirectionalLight, HemisphereLight } from "/vendor/three/build/three.module.js";
 
 function createLights() {
-  // Create a directional light
-  const light = new DirectionalLight('white', 8);
+	const ambientLight = new HemisphereLight(
+		'white',
+		'darkslategray',
+		10,
+	);
 
-  // move the light right, up, and towards us
-  light.position.set(10, 10, 10);
+  const mainLight = new DirectionalLight('white', 8);
+  mainLight.position.set(10, 10, 10);
 
-  return light;
+  return { ambientLight, mainLight};
 }
 
 export { createLights };
